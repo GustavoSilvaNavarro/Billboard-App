@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
+const bodyParser = require('body-parser');
 
 //INITIALIZATION
 const app = express();
@@ -22,12 +23,16 @@ app.set('layout', 'layouts/layout.html'); //esta linea setea mi layout en conjun
 //MIDDLEWARES
 app.use(expressLayouts);
 const mainRouter = require('./routes/main-route'); //llamado de ruta principal
+const authorRouter = require('./routes/authors-route');
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
+app.use(bodyParser.json());
 
 
 //GLOBAL VARIABLES
 
 //ROUTES
 app.use('/', mainRouter);
+app.use('/authors', authorRouter);
 
 //STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
