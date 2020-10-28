@@ -24,15 +24,15 @@ app.set('layout', 'layouts/layout.html'); //esta linea setea mi layout en conjun
 app.use(expressLayouts);
 const mainRouter = require('./routes/main-route'); //llamado de ruta principal
 const authorRouter = require('./routes/authors-route');
+const bookRouter = require('./routes/books-route'); //rutas para books
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
-app.use(bodyParser.json());
-
 
 //GLOBAL VARIABLES
 
 //ROUTES
 app.use('/', mainRouter);
 app.use('/authors', authorRouter);
+app.use('/books', bookRouter);
 
 //STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
