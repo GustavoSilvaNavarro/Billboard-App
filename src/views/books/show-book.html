@@ -1,0 +1,11 @@
+<h2><%= book.title %></h2>
+<img height="150" width="100" src="<%= book.coverImagePath %>">
+<div>
+    Author: <%= book.author.name %> <!--TENGO EL NOMBRE PORQUE EJECUTE FUNCION POPULATE PROPIA DE MONGOOSE-->
+</div>
+<div>Publish Date: <%= book.publishDate.toDateString() %></div>
+<div>Page Count: <%= book.pageCount %></div>
+<div>Description: <%= book.description %></div>
+<a href="/books/<%= book._id %>/edit">Edit</a>
+<%- include('../partials/deleteForm.html', { url: `/books/${book.id}` }) %>
+<a href="/authors/<%= book.author.id %>">View Author</a>

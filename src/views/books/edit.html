@@ -1,0 +1,6 @@
+<h2>Edit Book</h2>
+<form action="/books/<%= book.id %>/edit?_method=PUT" method="POST"> <!--enctype="multipart/form-data"> --> <!--PARA PODER USAR MULTER DEBO COLOCAR LO SIGUIENTE-->
+    <%- include('form-field-book.html') %>
+    <button type="submit">Update</button>
+    <a href="/books">Cancel</a>
+</form> <!--QUITO EL MUTILPART YA QUE CON FILEPOND EL PLUGIN DE FILE ENCODE ME PERMITE REPRESENTAR LA IMAGEN COMO JSON BASE 64 YA NO SE NECESITA MULTER-->
