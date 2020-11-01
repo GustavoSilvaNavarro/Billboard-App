@@ -1,22 +1,23 @@
 // CALL MODULE AND METHODS
 const router = require('express').Router();
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs'); //adminsitrador de archivos
+//const multer = require('multer'); // YA NO SE NECESITA MULTER
+//const path = require('path');
+//const fs = require('fs'); //adminsitrador de archivos
 
 //CALL MODEL
 const Book = require('../models/book-model');
 const Author = require('../models/author-model');
 
-//PATH TO UPLOAD IMAGES
-const uploadPath = path.join(__dirname, '../public', Book.coverImageBasePath);
+//PATH TO UPLOAD IMAGES (YA NO SE NECESITA YA QUE MULTER LO DEJE DE USAR)
+//const uploadPath = path.join(__dirname, '../public', Book.coverImageBasePath);
 
 //MULTER: UPLOADING IMAGE
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']; //le doy todos los tipos de formatos
+/* YA NO SE NECESITA YA QUE MULTER YA NO ES USADO
 const upload = multer({ dest: uploadPath, fileFilter: (req, file, callback) => { //asi lo hago para la subido de fotos
     callback(null, imageMimeTypes.includes(file.mimetype)); //el null es en caso de error y el otro e para aceptar todos los formatos
 } }); //con filefilter puedo filtrar los formatos o archivos que puede aceptar el servidor
-
+*/
 
 //CREATE ROUTES FOR BOOKS
 //Get All Books
@@ -50,35 +51,40 @@ router.get('/new', async (req, res) => { //debo pasar todas las opciones de auto
 });
 
 //POST Create New Book
-router.post('/new', upload.single('cover'), async (req, res) => { //como estoy creando mi colleccion coloco el upload para subir mi archivo le pongo cover ya que asi se van a llamar mis datos de imagenes
-    const fileName = req.file != null ? req.file.filename : null; //doy un estamento para tener el nombre del archivo digo si req.file es diferente de null dame el nombre sino es null
+router.post('/new', /*upload.single('cover'), */async (req, res) => { //como estoy creando mi colleccion coloco el upload para subir mi archivo le pongo cover ya que asi se van a llamar mis datos de imagenes / YA NO NECESITO UPLOAD.SINGLE YA QUE USO FILEPOND FILE ENCODE
+    //const fileName = req.file != null ? req.file.filename : null; //doy un estamento para tener el nombre del archivo digo si req.file es diferente de null dame el nombre sino es null
     const book = new Book({
         title: req.body.title,
         author: req.body.author,
         publishDate: new Date(req.body.publishDate), //hago esto ya que el req.body.publishDate va a devolver un string que al pasarlo al new Date lo convertira en fecha que es lo que recibe nuestro modelo
         pageCount: req.body.pageCount,
-        coverImageName: fileName,
+        //coverImageName: fileName,
         description: req.body.description
     });
+    //SAVE OUR COVER (UPLOADING FILE INTO BOOK MODEL)
+    saveCover(book, req.body.cover); //requiero encoded json y lo llamare con req.body.cover ya que over es el name de mi input en el formulario html
     try {
         const newBook = await book.save();
         //res.redirect(`/books/${newBook.id}`);
         res.redirect('/books');
     } catch {
+        /*
         if (book.coverImageName != null) {// solo quiero llamar la funcion si es que tengo un coverImageName sino no
             removeBookCover(book.coverImageName); //YA QUE SINO TENGO UN COVERIMAGENAME NO TENDRIA SENTIDO
-        }
+        } */
         renderNewPage(res, book, true);
     }
 });
 
 //USEFUL FNCTIONS FOR MY LOGIC
 //REMOVE COVER IMAGES FUNCTIONS
+/*
 function removeBookCover (fileName) {
     fs.unlink(path.join(uploadPath, fileName), err => { //le doy la direccion para eso concateno con el nimbre para que sepa cual eliminar
         if (err) console.error(err)
     });
 };
+*/
 
 //REUSABLE FUNCTION (Contains all logic in one place even from two different routes)
 async function renderNewPage (res, book, hasError = false) { //coloco hasError en false porque no habra error solo en caso haya se coloca en true
@@ -92,6 +98,18 @@ async function renderNewPage (res, book, hasError = false) { //coloco hasError e
         res.render('books/new.html', params);
     } catch {
         res.redirect('/books');
+    }
+};
+
+//RECIVE AND SAVE OUR ENCODED CODE FOR THE IMAGE FILE
+function saveCover(book, coverEncoded) {
+    if (coverEncoded == null) { //digo si coverEncoded es no valido quiero que se ejecute
+        return //si es nulo no quiero que haga nada
+    }
+    const cover = JSON.parse(coverEncoded); //lo que quiero es uncoded ya que tengo un string uncoded ya que estoy recibiendo un string y quiero pasarlo a JSON y parser el string a un JSON en un simple objeto JSON llamado cover
+    if (cover != null && imageMimeTypes.includes(cover.type)) { //hago una segunda validacion para verificar que no hay un string vacio o en caso haya una mala forma de javascript y verificar que el archivo o formato de archivo sea el correcto
+        book.coverImage = new Buffer.from(cover.data, 'base64'); //guardo la info en coverImage pero no la puedo guardar asi nomas la transoformo en Buffer para eso le doy el dato y y en que tipo esta en este caso base64 encoded
+        book.coverImageType = cover.type;
     }
 };
 

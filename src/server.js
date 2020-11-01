@@ -8,6 +8,7 @@ const express = require('express');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 //INITIALIZATION
 const app = express();
@@ -26,6 +27,7 @@ const mainRouter = require('./routes/main-route'); //llamado de ruta principal
 const authorRouter = require('./routes/authors-route');
 const bookRouter = require('./routes/books-route'); //rutas para books
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
+app.use(methodOverride('_method'));
 
 //GLOBAL VARIABLES
 

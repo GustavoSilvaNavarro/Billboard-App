@@ -9,4 +9,7 @@
     <div>
         <%= author.name %>
     </div>
+    <a href="/authors/<%= author._id %>">View</a>
+    <a href="/authors/<%= author._id %>/edit">Edit</a>
+    <%- include('../partials/deleteForm.html', { url: `/authors/${author.id}` }) %> <!--DE ESTA MANERA PASO UNA VARIABLE USANDO EJS-->
 <% }) %>
