@@ -1,0 +1,42 @@
+/*DEFINICION DE VARIABLES DEL HEADER*/
+:root {
+    --nav-title-font-size: 3rem;
+    --nav-title-font-weight: bold;
+    --nav-link-font-weight: 300; /*300 es muy ligero*/
+}
+
+.header-title {
+    color: var(--color-text-light);
+    text-decoration: none; /*QUITAR O PONER UN SUBRAYADO*/
+    font-size: var(--nav-title-font-size);
+    font-weight: var(--nav-title-font-weight);
+}
+
+.header-nav {
+    display: flex; /*convierto mis box en flex de flexibles*/
+    flex-wrap: wrap; /*con esto hago que cuando cambie de tamaño este vaya ocupando espacios debajo*/
+    justify-content: space-between; /*mando los boxes a saparase y pegados a los extremos*/
+    align-items: center; /*centro en el medio de arriba y abajo los boxes*/
+    margin-bottom: 5rem;
+}
+
+.header-nav ul { /*ESTILISO LA LISTA DESORDENADA*/
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav li {
+    list-style: none;
+}
+
+.header-nav li a {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-weight: var(--nav-link-font-weight);
+    padding: 1rem;
+}
+
+.header-nav li a:hover, .header-title:hover { /*CON HOVER HAGO QUE SE EJECUTE CUANDO EL MOUSE PASA POR ESE ELEMENTO*/
+    color: white;
+}

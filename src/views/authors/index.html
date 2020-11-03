@@ -1,4 +1,4 @@
-<h2>Search Authors</h2>
+<h2 class="page-header">Search Authors</h2>
 <form action="/authors">
     <label>Name</label>
     <input type="text" name="name" value="<%= searchOptions.name %>">
@@ -9,7 +9,9 @@
     <div>
         <%= author.name %>
     </div>
-    <a href="/authors/<%= author._id %>">View</a>
-    <a href="/authors/<%= author._id %>/edit">Edit</a>
-    <%- include('../partials/deleteForm.html', { url: `/authors/${author.id}` }) %> <!--DE ESTA MANERA PASO UNA VARIABLE USANDO EJS-->
+    <div class="btn-row">
+        <a class="btn btn-primary" href="/authors/<%= author._id %>">View</a>
+        <a class="btn btn-primary" href="/authors/<%= author._id %>/edit">Edit</a>
+        <%- include('../partials/deleteForm.html', { url: `/authors/${author.id}` }) %> <!--DE ESTA MANERA PASO UNA VARIABLE USANDO EJS-->
+    </div>
 <% }) %>

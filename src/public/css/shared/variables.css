@@ -1,0 +1,9 @@
+/*DEFINO MIS VARIABLES DENTRO DE UN ELEMENTO ROOT*/
+:root {
+    --color-base-hue: 200;
+    --color-danger-hue-offset: 180; /*DECLARO MI VARIABLE DE OFFSET COLOCANDOLO A LA MITAD DE HSL QUE TIENE 360 DE AMPLITUD Y LO COLOCO A 180*/
+    --color-danger-hue: calc(var(--color-base-hue) - var(--color-danger-hue-offset)); /*HAGO CALCULOS CON LAS VARIABLES PARA OBETENR EL COLOR DESEADO con esto declaro que estoy obteniendo el opuesto al color base*/
+    --color-background-dark: hsl(var(--color-base-hue), 100%, 8%); /*DEFINO MIS COLORES MEDIATE SISTEMA HSL H: HUE (Matiz), S: SATURATION (Saturacion), L: LIGHTNESS (Luminisidad) */
+    --color-background-light: hsl(var(--color-base-hue), 100%, 16%);
+    --color-text-light: hsl(var(--color-base-hue), 100%, 87%);
+}

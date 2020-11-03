@@ -17,11 +17,17 @@
     <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script> <!--COLOCO DEFER PARA QUE CARGE EL SCRIPT UNA VEZ QUE EL HTML HAYA CARGADO-->
     <!--ADD OWN JAVASCRIPTS FOR DOM-->
     <script defer src="/js/fileUpload.js"></script>
+    <!--ADDING OWN CSS-->
+    <link rel="stylesheet" href="/css/main.css">
     <title>Mybrary</title>
 </head>
 <body>
-    <%- include('../partials/header.html') %>
-    <%- include('../partials/errorMessage.html') %>
-    <%- body %> <!--AQUI VA A IR TODO MI CODIDO QUE LO IMPORTO ESTA SERA MI PLANTILLA PINCIPAL-->
+    <div class="container">
+        <%- include('../partials/header.html') %>
+        <div class="inner-container">
+            <%- include('../partials/errorMessage.html') %>
+            <%- body %> <!--AQUI VA A IR TODO MI CODIDO QUE LO IMPORTO ESTA SERA MI PLANTILLA PINCIPAL-->
+        </div>
+    </div>
 </body>
 </html>

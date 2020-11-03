@@ -1,0 +1,39 @@
+/*IMPORTO PROPIEDADES, VARIABLES, FUENTES Y OTROS ARCHIVOS CSS*/
+@import 'shared/fonts.css';
+@import 'shared/variables.css';
+@import 'shared/header.css';
+@import 'shared/buttons.css';
+
+/*ADDING FONT TO THE WHOLE DOCUMENT*/
+:root { /*PONGO ROOT PORQUE LE DIGO QUE A TODO MI HTML SERA AFECTADO*/
+    font-family: 'Gotham Rounded';
+    font-size: 20px;
+    color: var(--color-text-light);
+}
+
+/*AYUDA PARA TODOS LOS ELEMENTOS*/
+*, *::before, *::after { /*PROPIEDAD ::AFTER Y ::BEFORE TE PERMITEN QUE SE EJCUTE ALGO ANTES O DESPUES DE ESE ELEMENTO EN ESTE CASO ES * DE TODOS LOS ELEMENTOS*/
+    box-sizing: border-box; /*CON ESTA PROPIEDAD QUIERO DECIR QUE LA ALTURA Y ANCHURA DE UN ELEMETNO CON O SIN PADDING SEA EL MISMO Y EL PADDING O BORDER SEAN PARTE DEL WIDTH MAS NO SE SUME*/
+}
+
+/*CHANGE BACKGROUND COLOR*/
+body {
+    background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light)); /*VA LINEAR GRADIENTE PORQUE VA DISMINUYENDO INTENSIDAD DE IZQUIERDA A DERECHA para eso lo hago definiendo variables de colores mas oscuros y colores mas ligeros EL COLOR DE LA IZQUIERDA ES EL MAS OSCURO SEGUN LO QUE HEMOS DEFINIDO*/
+}
+
+/*POSICION GENERAL DE CONTENIDO*/
+.container {
+    max-width: 1200px;
+    margin: auto; /*AGREGA IGUAL MARGEN EN IZQUIERDA Y DERECHA*/
+    margin-bottom: 3rem;
+}
+
+.inner-container {
+    margin: 0 2rem; /*margen arriba y abajo 0, izquierda y derecha es de 2 rem*/
+}
+
+/*TAMAÑO DEL TITULO DE LAS PAGINAS PRINCIPALES*/
+.page-header {
+    font-size: 2rem;
+    font-weight: 500;
+}

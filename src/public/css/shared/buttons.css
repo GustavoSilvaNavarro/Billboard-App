@@ -1,0 +1,58 @@
+/*DEIFNE VARIABLES FOR BUTTONS*/
+:root {
+    --color-btn-primary-background: hsl(var(--color-base-hue), 100%, 83%);
+    --color-btn-primary-background-dark: hsl(var(--color-base-hue), 100%, 73%);
+    --color-btn-primary-text: hsl(var(--color-base-hue), 100%, 20%);
+    --color-btn-primary-text-dark: hsl(var(--color-base-hue), 100%, 10%);
+    --color-btn-border: black;
+    --color-btn-danger-background: hsl(var(--color-danger-hue), 100%, 83%);
+    --color-btn-danger-background-dark: hsl(var(--color-danger-hue), 100%, 73%);
+    --color-btn-danger-text: black;
+    --color-btn-danger-text-dark: black;
+
+}
+/*BASE BUTTON CLASS*/
+.btn {
+    border: 1px solid var(--color-btn-border);
+    border-radius: .5rem; /*radio en las esquinas*/
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+    font-family: 'Gotham Rounded'; /*coloco de nuevo la familia ya que por default los botones no adquieren la fuente de la root*/
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-row {
+    display: flex;
+    align-items: flex-start; /*alinea arriba y abajo el contenido dentro de un flex en caso de flex-start alinea al comienzo del flex box*/
+}
+
+.btn-row > * { /*AL HACER ESTO ESTOY SELECCIONANDO CADA HIJO O CADA PEQUEÑO OBJETO DENTRO DEL FLEX BOX*/
+    margin-left: 1rem; /*LO HAGO CON EL FIN DE COLOCAR ESPACIADO*/
+}
+
+.btn-row > *:first-child { /*AL HACER ESTO ESTOY SELECCIONANDO el primer hijo DEL FLEX BOX OSEA PRIMER ELEMENTO*/
+    margin-left: 0;
+}
+
+/*SPECIAL BUTTONS SETTING*/
+.btn-primary {
+    color: var(--color-btn-primary-text);
+    background-color: var(--color-btn-primary-background);
+}
+
+.btn-primary:hover {
+    color: var(--color-btn-primary-text-dark);
+    background-color: var(--color-btn-primary-background-dark);
+}
+
+.btn-danger {
+    color: var(--color-btn-danger-text);
+    background-color: var(--color-btn-danger-background);
+}
+
+.btn-danger:hover {
+    color: var(--color-btn-danger-text-dark);
+    background-color: var(--color-btn-danger-background-dark);
+}
