@@ -1,0 +1,86 @@
+/*DEFINE VARIABLES FOR FORM*/
+:root {
+    --form-label-font-size: 1.2rem;
+    --form-input-border-color: hsl(var(--color-base-hue), 100%, 50%);
+    --form-input-background-color: hsl(var(--color-base-hue), 100%, 31%);
+    --form-input-border-color-light: hsl(var(--color-base-hue), 100%, 80%);
+}
+
+/*BASE FORM STYLE*/
+.form-row {
+    display: flex;
+    margin-bottom: .5rem;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column; /*DE ESTA MANERA EL LABEL ESTARA ENCIMA DEL INPUT*/
+    margin-left: 2rem;
+    flex-grow: 1; /*LE DIGO QUE CREZCA DE IZQUIERDA A DERECHA LOS MAS GRANDE POSIBLE*/
+    flex-basis: 0; /*AMBAS ETIQUETAS LABEL Y INPUT CRECEN DESDE EL MISMO PUNTO*/
+}
+
+.form-item:first-child {
+    margin-left: 0;
+}
+
+.form-item-no-grow {
+    flex-grow: 0; /*le digo que no se debe tomar todo el espacio disponible*/
+}
+
+/*MUEVO LOS BOTONES AL FINAL DE LA PAGINA BIEN A LA DERECHA*/
+.form-row-end {
+    justify-content: flex-end; /*mando el flex todo al final*/
+}
+
+.form-item > label { /*OTRA FORMA DE SELECCIONAR LAS ETIQUETAS DENTRO E FORM ITEM*/
+    font-size: var(--form-label-font-size);
+    margin-left: .25rem;
+    margin-bottom: .25rem;
+}
+
+/*ESTILIZO MIS INPUTS DENTRO DE FORM FOR BOOKS*/
+.form-item input, .form-item select, .form-item textarea {
+    height: 2rem;
+    padding: .25rem .5rem;
+    border-radius: .25rem;
+    border: 1px solid var(--form-input-border-color);
+    background-color: var(--form-input-background-color);
+    color: var(--color-text-light);
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: 'Gotham Rounded';
+    outline: none; /*algunos inputs tienen linea externa con esto lo quito*/
+}
+
+/*ESTILIZO TEXTAREA NO QUIERO QUE SE EDITABLE EL TAMAÑO*/
+.form-item textarea {
+    height: 100%; /*doy maxima altura*/
+    resize: none; /*evito que se mueva el tamaño manualmente con el mouse*/
+}
+
+/*ESTILIZO OPCION DE SELECCION DE AUTHOR PARA QUE SE PUEDA DIFERENCIAR CUAL ES EL SELECCIONADO*/
+.form-item select option {
+    background-color: black; /*ASI CUANDO HAYA UNA OPCION SELECCIONADA LAS DEMAS NO SELECCIONADAS SE PONE DE COLOR NEGRO*/
+}
+
+/*ESTILIZO PARA QUE BRILLE CUANDO DOY CLICK*/
+.form-item input:focus, .form-item select:focus, .form-item textarea:focus { /*el focus es diferente del hover ya que focus es cuando doy click en un input o textarea o lo que sea*/
+    border-color: var(--form-input-border-color-light);
+}
+
+/*ESTILIZAMOS EL FILEPOND INPUT PARA EL SUBIDO DE IMAGENES*/
+.filepond--root {
+    font-family: 'Gotham Rounded';
+    margin: 0;
+}
+
+.filepond--panel-root { /*estilizo el color interior y borde del cover*/
+    background-color: var(--form-input-background-color);
+    border: 1px, solid var(--form-input-border-color);
+}
+
+.filepond--drop-label { /*estilizo el color del texto interior*/
+    color: var(--color-text-light);
+    font-size: inherit; /*valor hereado*/
+}

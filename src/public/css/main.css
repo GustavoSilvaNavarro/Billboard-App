@@ -3,6 +3,7 @@
 @import 'shared/variables.css';
 @import 'shared/header.css';
 @import 'shared/buttons.css';
+@import 'shared/form.css';
 
 /*ADDING FONT TO THE WHOLE DOCUMENT*/
 :root { /*PONGO ROOT PORQUE LE DIGO QUE A TODO MI HTML SERA AFECTADO*/

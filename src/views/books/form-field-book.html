@@ -1,34 +1,40 @@
-<div>
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title" placeholder="Title" value="<%= book.title %>" autofocus>
+<div class="form-row">
+    <div class="form-item">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" placeholder="Title" value="<%= book.title %>" autofocus>    
+    </div>
+    <div class="form-item">
+        <label for="author">Author</label>
+        <select name="author">
+            <% authors.forEach(author => { %>
+                <!--NECESTIO HACERLE SABER AL CODIGO CUANDO HALLA SELECCIONADO UN AUTHOR PARA ESO COLOCO UN ESTAMENTE Y LO PONGO COMO SELECCIONADO COMO ESTA ES MI OPCION-->
+                <% if (author.id === book.author) { %>
+                    <option selected label="<%= author.name %>" value="<%= author.id %>"> <!--EL VALUE ES EL ID YA QUE PUSE EN MI MODELO QUE EL AUTHOR IBA A RECIBIR UN OBJECTID-->
+                <% } else { %> <!--En caso no sea igual ya no se tendra una opcion por defecto y quedara desabilitado para libre eleccion-->
+                    <option label="<%= author.name %>" value="<%= author.id %>"> <!--EL VALUE ES EL ID YA QUE PUSE EN MI MODELO QUE EL AUTHOR IBA A RECIBIR UN OBJECTID-->
+                <% } %>
+            <% }) %>
+        </select>
+    </div>
 </div>
-<div>
-    <label for="author">Author</label>
-    <select name="author">
-        <% authors.forEach(author => { %>
-            <!--NECESTIO HACERLE SABER AL CODIGO CUANDO HALLA SELECCIONADO UN AUTHOR PARA ESO COLOCO UN ESTAMENTE Y LO PONGO COMO SELECCIONADO COMO ESTA ES MI OPCION-->
-            <% if (author.id === book.author) { %>
-                <option selected label="<%= author.name %>" value="<%= author.id %>"> <!--EL VALUE ES EL ID YA QUE PUSE EN MI MODELO QUE EL AUTHOR IBA A RECIBIR UN OBJECTID-->
-            <% } else { %> <!--En caso no sea igual ya no se tendra una opcion por defecto y quedara desabilitado para libre eleccion-->
-                <option label="<%= author.name %>" value="<%= author.id %>"> <!--EL VALUE ES EL ID YA QUE PUSE EN MI MODELO QUE EL AUTHOR IBA A RECIBIR UN OBJECTID-->
-                
-            <% } %>
-        <% }) %>
-    </select>
+<div class="form-row">
+    <div class="form-item">
+        <label for="publishDate">Publish Date</label>
+        <input type="date" name="publishDate" id="publishDate" value="<%= book.publishDate == null ? '' : book.publishDate.toISOString().split('T')[0] %>"> <!--PARA COLOCAR LA FECHA Y HORA HAREMOS UN CONDICIONAL DE JAVASCRIP CON UN OPERADOR TERNARIO--> <!--LO QUE SE ESTA HACIENDO ES QUE CUANDO SE SELECCIONE UNA FECHA COMO ESTA ESTANDARIZADA EN UTC LA DESEO VOLVER A ISO DE ESTA NOMENCLATURA YYYY-MM-DDTHH:mm:ss.sssZ Y LUEGO CON SPLT SEPARO EL STRING EN LA T Y LO SEPARO EN DOS Y ME QUEDO CON LA POSICION 0 ES DECIR LA PRIMERA QUE ES LA FECHA-->
+    </div>
+    <div class="form-item">
+        <label for="pageCount">Page Count</label>
+        <input type="number" name="pageCount" id="pageCount" min="1" value="<%= book.pageCount %>">
+    </div>    
 </div>
-<div>
-    <label for="publishDate">Publish Date</label>
-    <input type="date" name="publishDate" id="publishDate" value="<%= book.publishDate == null ? '' : book.publishDate.toISOString().split('T')[0] %>"> <!--PARA COLOCAR LA FECHA Y HORA HAREMOS UN CONDICIONAL DE JAVASCRIP CON UN OPERADOR TERNARIO--> <!--LO QUE SE ESTA HACIENDO ES QUE CUANDO SE SELECCIONE UNA FECHA COMO ESTA ESTANDARIZADA EN UTC LA DESEO VOLVER A ISO DE ESTA NOMENCLATURA YYYY-MM-DDTHH:mm:ss.sssZ Y LUEGO CON SPLT SEPARO EL STRING EN LA T Y LO SEPARO EN DOS Y ME QUEDO CON LA POSICION 0 ES DECIR LA PRIMERA QUE ES LA FECHA-->
-</div>
-<div>
-    <label for="pageCount">Page Count</label>
-    <input type="number" name="pageCount" id="pageCount" min="1" value="<%= book.pageCount %>">
-</div>
-<div>
-    <label>Cover</label>
-    <input class="filepond" type="file" name="cover"> <!--file inputs dont allow value's and the name is not gonna be tje name of the data as the model cuz its gonna be the name of the file itself-->
-</div>
-<div>
-    <label for="description">Description</label>
-    <textarea name="description" id="description" ><%= book.description %></textarea>
+
+<div class="form-row">
+    <div class="form-item form-item-no-grow">
+        <label>Cover</label>
+        <input class="filepond" type="file" name="cover"> <!--file inputs dont allow value's and the name is not gonna be tje name of the data as the model cuz its gonna be the name of the file itself-->
+    </div>
+    <div class="form-item">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" ><%= book.description %></textarea>
+    </div>  
 </div>

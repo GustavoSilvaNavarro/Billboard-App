@@ -1,18 +1,24 @@
 <h2 class="page-header">Search Books</h2>
 <form action="/books">
-    <div>
-        <label>Title</label>
-        <input type="text" name="title" value="<%= searchOptions.title %>">
+    <div class="form-row">
+        <div class="form-item">
+            <label>Title</label>
+            <input type="text" name="title" value="<%= searchOptions.title %>">
+        </div>
     </div>
-    <div>
-        <label>Published After</label>
-        <input type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>"> <!--en este caso es diferente no se neceista estar convirtiendoa a ISO string ya que desde nuestra base sle diferente esto era a la hora de crear el libro sin embargo en esta busqueda va a salir algo diferente ya que estamos haciendo posting and getting desde nuestro porpio servidor ya que se envia y se lee este mismo publishedAfter -->
+    <div class="form-row">
+        <div class="form-item">
+            <label>Published After</label>
+            <input type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>"> <!--en este caso es diferente no se neceista estar convirtiendoa a ISO string ya que desde nuestra base sle diferente esto era a la hora de crear el libro sin embargo en esta busqueda va a salir algo diferente ya que estamos haciendo posting and getting desde nuestro porpio servidor ya que se envia y se lee este mismo publishedAfter -->
+        </div>
+        <div class="form-item">
+            <label>Published Before</label>
+            <input type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>">
+        </div>
     </div>
-    <div>
-        <label>Published Before</label>
-        <input type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>">
+    <div class="form-row form-row-end">
+        <button class="btn btn-primary" type="submit">Search</button>
     </div>
-    <button type="submit">Search</button>
 </form>
 <div>
     <% books.forEach(book => { %>
