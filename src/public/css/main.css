@@ -4,6 +4,8 @@
 @import 'shared/header.css';
 @import 'shared/buttons.css';
 @import 'shared/form.css';
+@import 'shared/author.css';
+@import 'shared/books.css';
 
 /*ADDING FONT TO THE WHOLE DOCUMENT*/
 :root { /*PONGO ROOT PORQUE LE DIGO QUE A TODO MI HTML SERA AFECTADO*/
@@ -37,4 +39,9 @@ body {
 .page-header {
     font-size: 2rem;
     font-weight: 500;
+}
+
+/*ESTILOS PARA EL MENSAJE DE ERROR*/
+.error-message {
+    color: hsl(var(--color-danger-hue), 100%, 50%);
 }

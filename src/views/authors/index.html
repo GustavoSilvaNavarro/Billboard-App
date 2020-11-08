@@ -12,12 +12,14 @@
 </form>
 <br>
 <% authors.forEach(author => { %>
-    <div>
-        <%= author.name %>
-    </div>
-    <div class="btn-row">
-        <a class="btn btn-primary" href="/authors/<%= author._id %>">View</a>
-        <a class="btn btn-primary" href="/authors/<%= author._id %>/edit">Edit</a>
-        <%- include('../partials/deleteForm.html', { url: `/authors/${author.id}` }) %> <!--DE ESTA MANERA PASO UNA VARIABLE USANDO EJS-->
+    <div class="author-row">
+        <div class="author-name">
+            <%= author.name %>
+        </div>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="/authors/<%= author._id %>">View</a>
+            <a class="btn btn-primary" href="/authors/<%= author._id %>/edit">Edit</a>
+            <%- include('../partials/deleteForm.html', { url: `/authors/${author.id}` }) %> <!--DE ESTA MANERA PASO UNA VARIABLE USANDO EJS-->
+        </div>
     </div>
 <% }) %>

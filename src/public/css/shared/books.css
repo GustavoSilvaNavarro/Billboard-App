@@ -1,0 +1,64 @@
+:root { /*RAICES CN FUNCIONES Y VARIABLES*/
+    --book-cover-width: 200px;
+    --book-cover-width-large: 325px;
+    --book-cover-aspect-ratio: 0.75;
+}
+
+.book-cover { /*defino parametros basicos de tamaño para las fotos*/
+    width: var(--book-cover-width);
+    height: calc(var(--book-cover-width) / var(--book-cover-aspect-ratio));
+}
+
+.book-cover-large {/*REDEFINO LOS TAMAÑOS O PARAMETROS DE MIS VARIABLES*/
+    --book-cover-width: var(--book-cover-width-large); /*lo hago asi de redefinir ya que tiene adelante el parametro de boo cover*/
+}
+
+/*DEFINO MIS ESTILOS PARA EL LAYOUTS DE MIS FOTOS*/
+.book-grid {
+    display: grid;
+    justify-content: center;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, var(--book-cover-width)); /*BASICAMENTE GRID TEMPLATE TE DA EL NUMERO DE COLUMNAS PER AL PONER REPEAT AUTOFILL BASICAMENTE LE DICE TOMAS TODAS LAS COLUMNAS POSIBLES ANTES DE PASAR ABAJO EN WRAP / desupes de la coma le dijo el ancho de acda item de mi columna*/
+}
+
+.book-grid-large {
+    grid-template-columns: repeat(auto-fill, var(--book-cover-width-large)); /*REDEFINO MI VARIBLE GRID PARA LARGE*/
+}
+
+/*ESTILIZANDO MI PAGINA PARA MOSTRAR MI LIBRO SIMPLE Y SU DESCRIPCCION*/
+.book-details {
+    display: flex;
+}
+
+.book-details-label { /*estilizo mis etiquetas*/
+    font-size: 1.2rem;
+    font-weight: 500;
+    align-self: flex-start; /*ALINEO LOS ITEMS DE LABEL DENTRO DE MI GRID CONTAINER CON FLEX-START AL TOPE DEL GRID*/
+}
+
+.book-details-grid { /*ESTILIZO LOS DATOS EN FORMATO GRID PARA SEPARARLOS*/
+    display: grid;
+    align-content: flex-start; /*alineo todo el contenido o div al tope de mi grid*/
+    align-items: center; /*alieno al centro todos los itenes pertenecientes a ese div o contenedor*/
+    gap: 1rem;
+    grid-template-columns: auto auto;
+}
+
+/*DEFINO EL GRID AREA*/
+.book-details-author-button {
+    grid-area: author; /*DEFINO MI GRID ARE PARA PODERLO USAR ABAJO CUANDO LO LLAME*/
+    justify-self: stretch; /*USO PARA AJUSTAR EL ANCHO DE MI VIEW AUTHOR BUTTON Y SE AJUSTE A LOS DEMAS*/
+}
+
+/*ESTILIZO MIS BOTONES*/
+.book-details-btn-grid {
+    display: grid;
+    justify-items: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    grid-template-areas:
+        "edit delete"
+        "author author"; /*hago la separacion por area */
+    gap: .5rem;
+    margin-top: .5rem;
+}

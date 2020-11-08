@@ -1,0 +1,11 @@
+<!--ESTE PARTIAL CONSISTE O ME VA PERMITIR AJUSTAR EL GRID O TAMAÑO A LAS IMAGENES QUE MUESTRE-->
+<% bookCoverClass = locals.large ? 'book-cover-large' : '' %> <!--locals. nos permite acceder a nuestras variables locales cuando las pasamos / SETEO MI VARIABLE LARGE-->
+<% bookGridClass = locals.large ? 'book-grid-large' : '' %>
+
+<div class="book-grid <%= bookGridClass %>">
+    <% books.forEach(book => { %>
+        <a href="/books/<%= book.id %>">
+            <img class="book-cover <%= bookCoverClass %>" src="<%= book.coverImagePath %>">
+        </a>
+    <% }) %>
+</div>
